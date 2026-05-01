@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special ❤️</title>
 
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow-x: hidden;
+    color: white;
+}
+
+/* Intro Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+}
+
+#intro input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+#intro button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Typing Effect */
+#typing {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.message {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 10px;
+}
+
+/* Floating Button */
+.button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #ff4d6d;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Hearts Animation */
+.heart {
+    position: fixed;
+    font-size: 20px;
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Password Screen -->
+<div id="intro">
+    <h2>Enter Secret Code 💖</h2>
+    <input type="password" id="pass">
+    <button onclick="checkPass()">Open</button>
+</div>
+
+<h1>💖 You Are My World 💖</h1>
+<div id="typing"></div>
+
+<div class="gallery">
+    <div class="card">
+        <img src="img1.jpg">
+        <div class="message">She is Strong 💪</div>
+    </div>
+
+    <div class="card">
+        <img src="img2.jpg">
+        <div class="message">She is Beautiful ❤️</div>
+    </div>
+
+    <div class="card">
+        <img src="img3.jpg">
+        <div class="message">She is My Golgappa 😘</div>
+    </div>
+
+    <div class="card">
+        <img src="img4.jpg">
+        <div class="message">She is My Peace 🌸</div>
+    </div>
+</div>
+
+<div class="button" onclick="surprise()">I Miss You ❤️</div>
+
+<div class="popup" id="popup">
+    <h2>You are so adorable 💖</h2>
+    <p>You are the most special person in my life ✨</p>
+</div>
+
+<script>
+/* Password */
+function checkPass() {
+    let pass = document.getElementById("pass").value;
+    if(pass === "love123") {
+        document.getElementById("intro").style.display = "none";
+        startTyping();
+    } else {
+        alert("Wrong password 😅");
+    }
+}
+
+/* Typing Effect */
+let text = "Every moment with you is special ❤️";
+let i = 0;
+
+function startTyping() {
+    let speed = setInterval(() => {
+        if(i < text.length) {
+            document.getElementById("typing").innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(speed);
+        }
+    }, 50);
+}
+
+/* Surprise */
+function surprise() {
+    document.getElementById("popup").style.display = "block";
+
+    for(let i=0; i<30; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.animationDuration = (2 + Math.random()*3) + "s";
+        document.body.appendChild(heart);
+    }
+}
+</script>
+
+</body>
+</html>
